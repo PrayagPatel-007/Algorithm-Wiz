@@ -1,12 +1,13 @@
 import './App.css';
 
 import Header from './utils/Header/Header';
+import IndexPage from './utils/IndexPage/IndexPage/IndexPage';
 
 function App() {
-  return <>
+  return (<>
     <Header />
-    Hello World
-  </>
+    <IndexPage />
+  </>)
 }
 
 export default App;
