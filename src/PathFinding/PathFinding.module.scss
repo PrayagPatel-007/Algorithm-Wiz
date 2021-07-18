@@ -1,0 +1,27 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 3fr 1fr;
+  }
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: black
+}
+
+.container {
+  padding: 30px;
+}
+
+.pad {
+  padding: 10px;
+  background-color: black;
+  border-radius: 5px;
+}

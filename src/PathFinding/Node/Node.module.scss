@@ -1,0 +1,35 @@
+.node {
+  color: black;
+  background-color: white;
+
+  &:hover {
+    background-color: aqua;
+  }
+
+  &.wall {
+    background-color: black;
+  }
+
+  &.source {
+    background-color: red;
+  }
+
+  &.destination {
+    background-color: green;
+  }
+
+  &.visited {
+    background-color: yellow;
+  }
+
+  &.shortestpath {
+    background-color: rgb(185, 23, 185);
+  }
+}
+
+.node::before {
+  content: '';
+  width: 0;
+  display: block;
+  padding-bottom: 100%;
+}

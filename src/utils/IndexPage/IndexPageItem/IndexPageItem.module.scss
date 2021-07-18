@@ -5,13 +5,13 @@
   overflow: hidden;
   padding: 10px;
   background-color: rgb(37, 37, 37);
-  color: white;
   border-radius: 10px;
   cursor: pointer;
   transition: all 500ms;
 
   &:hover {
     background-color: black;
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0, 0);
   }
 }
 
@@ -23,4 +23,5 @@ img {
 
 p {
   margin-top: 10px;
+  color: white;
 }
