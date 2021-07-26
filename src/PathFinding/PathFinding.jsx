@@ -8,6 +8,9 @@ import Controls from './utils/Controls';
 import styles from './PathFinding.module.scss';
 
 import { bfs } from './Algorithms/BFS';
+import { dijkstra } from './Algorithms/Dijkstras';
+import { dfs } from './Algorithms/DFS';
+import { generateMaze } from './utils/generateMaze';
 
 // Constants for the state
 const SELECT_SOURCE = 1;
@@ -16,12 +19,13 @@ const SELECT_WALL = 3;
 const CLEAR_BOARD = 4;
 const CLEAR_PATH = 5;
 const VISUALISE = 6;
+const GENERATE = 9;
 
 // Speed Factor
-var SPEED;
+var SPEED = 1;
 
-var ROWS = 20,
-  COLS = 20;
+var ROWS = 50,
+  COLS = 50;
 
 export default class PathFinding extends React.Component {
   state = {
@@ -33,16 +37,7 @@ export default class PathFinding extends React.Component {
     FINISH_NODE_COL: COLS - 3,
     isMousePressed: true,
 
-    disableMazesButton: false,
-    disableNodesButton: false,
-    disableClearMazeButton: false,
-    disableClearPathButton: false,
-    disableAlgoDropdown: false,
-    disablePerformButton: false,
-
-    // highlightMazeNodes: true,
-    // isGridDiagonalsHighlighted: false,
-    speed: SPEED,
+    disabled: false
   };
 
   componentDidMount() {
@@ -137,7 +132,12 @@ export default class PathFinding extends React.Component {
   onControlClick = (mode) => {
     if (mode === CLEAR_BOARD) this.clearBoard();
     else if (mode === CLEAR_PATH) this.clearPath();
-    else if (mode === VISUALISE) this.visualiseAlgorithm(mode - 5);
+    else if (mode === GENERATE) {
+      const temp2 = _.cloneDeep(this.state.grid);
+      const temp = generateMaze(temp2);
+      this.setState({grid : temp});
+    }
+    else if (mode >= VISUALISE) this.visualiseAlgorithm(mode - 5);
     else {
       this.setState({ modifyingNodeState: mode });
     }
@@ -164,17 +164,28 @@ export default class PathFinding extends React.Component {
       FINISH_NODE_COL,
       FINISH_NODE_ROW,
     } = this.state;
-
+    this.setState({disabled : true});
     var visitedNodesInOrder, nodesInShortestPathOrder;
     let temp = _.cloneDeep(grid);
     const STARTNODE = temp[START_NODE_ROW][START_NODE_COL];
     const FINISHNODE = temp[FINISH_NODE_ROW][FINISH_NODE_COL];
     switch (algorithm) {
-      case 0:
-        alert('Select an algorithm first!');
-        return;
       case 1:
         [visitedNodesInOrder, nodesInShortestPathOrder] = bfs(
+          temp,
+          STARTNODE,
+          FINISHNODE
+        );
+        break;
+      case 2:
+        [visitedNodesInOrder, nodesInShortestPathOrder] = dfs(
+          temp,
+          STARTNODE,
+          FINISHNODE
+        );
+        break;
+      case 3:
+        [visitedNodesInOrder, nodesInShortestPathOrder] = dijkstra(
           temp,
           STARTNODE,
           FINISHNODE
@@ -192,7 +203,7 @@ export default class PathFinding extends React.Component {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
           this.animateShortestPath(nodesInShortestPathOrder);
-        }, i * 50);
+        }, i * SPEED);
         return;
       }
       setTimeout(() => {
@@ -201,27 +212,33 @@ export default class PathFinding extends React.Component {
           temp[node.row][node.col].isVisited = true;
         }
         this.setState({ grid: temp });
-      }, i * 50);
+      }, i * SPEED);
     }
   };
 
   animateShortestPath = (nodesInShortestPathOrder = []) => {
     let temp = _.cloneDeep(this.state.grid);
-    for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
+    for (let i = 0; i <= nodesInShortestPathOrder.length; i++) {
+      if (i === nodesInShortestPathOrder.length) {
+        setTimeout(() => {
+          this.setState({disabled: false});
+        }, i * SPEED);
+        return;
+      }
       setTimeout(() => {
         const node = nodesInShortestPathOrder[i];
         if (!node.isStart && !node.isFinish && !node.isWall) {
           temp[node.row][node.col].isShortest = true;
         }
         this.setState({ grid: temp });
-      }, i * 50);
+      }, i * SPEED);
     }
   };
 
   render() {
     return (
-      <div style={{ backgroundColor: '#5a5a5a' }}>
-        <Controls clickHandler={this.onControlClick} />
+      <div style={{ backgroundColor: '#141414' }}>
+        <Controls clickHandler={this.onControlClick} disabled={this.state.disabled} />
         <div className={styles.grid}>
           <div className={styles.container}>
             <div className={styles.pad}>

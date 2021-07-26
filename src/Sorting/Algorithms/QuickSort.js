@@ -1,19 +1,19 @@
 const partition = (array, l, r, res) => {
-  let pivot = array[r].value;
+  let pivot = array[r];
   let i = l - 1;
   for (let j = l; j <= r - 1; ++j) {
-    if (array[j].value < pivot) {
+    if (array[j] < pivot) {
       ++i;
       res.push([i, j]);
-      let t = array[j].value;
-      array[j].value = array[i].value;
-      array[i].value = t;
+      let t = array[j];
+      array[j] = array[i];
+      array[i] = t;
     }
   }
   res.push([i+1, r]);
-  let t = array[i + 1].value;
-  array[i + 1].value = array[r].value;
-  array[r].value = t;
+  let t = array[i + 1];
+  array[i + 1] = array[r];
+  array[r] = t;
   return i + 1;
 };
 
