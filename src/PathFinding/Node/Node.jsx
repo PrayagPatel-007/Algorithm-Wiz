@@ -2,13 +2,6 @@ import React from 'react';
 
 import styles from './Node.module.scss';
 
-const WALL = 1;
-const SOURCE = 2;
-const DEST = 3;
-const VISITED = 4;
-const SHORTEST = 5;
-const UNIVISITED = 0;
-
 export default function Node(props) {
   const {
     row,
