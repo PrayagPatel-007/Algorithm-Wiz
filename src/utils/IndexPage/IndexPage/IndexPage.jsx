@@ -8,11 +8,11 @@ export default class IndexPage extends React.Component {
     data: [
       {
         title: 'Pathfinding Algorithms',
-        url: '/path-finding-visualizer'
+        url: '/Algorithm-Wiz/path-finding-visualizer'
       },
       {
         title: 'Sorting Algorithms',
-        url: '/sorting'
+        url: '/Algorithm-Wiz/sorting'
       }
     ],
   };

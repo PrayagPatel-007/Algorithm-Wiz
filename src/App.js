@@ -13,9 +13,9 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Route exact path='/' component={IndexPage} />
-      <Route path='/path-finding-visualizer' component={PathFinding} />
-      <Route path='/sorting' component={Sorting} />
+      <Route exact path='/Algorithm-Wiz' component={IndexPage} />
+      <Route path='/Algorithm-Wiz/path-finding-visualizer' component={PathFinding} />
+      <Route path='/Algorithm-Wiz/sorting' component={Sorting} />
       <Footer />
     </BrowserRouter>
   );
