@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Algorithm-Wiz/static/css/main.6a519192.chunk.css",
+    "main.js": "/Algorithm-Wiz/static/js/main.51870aa5.chunk.js",
+    "main.js.map": "/Algorithm-Wiz/static/js/main.51870aa5.chunk.js.map",
+    "runtime-main.js": "/Algorithm-Wiz/static/js/runtime-main.facf76dc.js",
+    "runtime-main.js.map": "/Algorithm-Wiz/static/js/runtime-main.facf76dc.js.map",
+    "static/js/2.4ea0745e.chunk.js": "/Algorithm-Wiz/static/js/2.4ea0745e.chunk.js",
+    "static/js/2.4ea0745e.chunk.js.map": "/Algorithm-Wiz/static/js/2.4ea0745e.chunk.js.map",
+    "index.html": "/Algorithm-Wiz/index.html",
+    "static/css/main.6a519192.chunk.css.map": "/Algorithm-Wiz/static/css/main.6a519192.chunk.css.map",
+    "static/js/2.4ea0745e.chunk.js.LICENSE.txt": "/Algorithm-Wiz/static/js/2.4ea0745e.chunk.js.LICENSE.txt",
+    "static/media/PathFinding.7e256a58.png": "/Algorithm-Wiz/static/media/PathFinding.7e256a58.png",
+    "static/media/Sorting.46186c22.png": "/Algorithm-Wiz/static/media/Sorting.46186c22.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.facf76dc.js",
+    "static/js/2.4ea0745e.chunk.js",
+    "static/css/main.6a519192.chunk.css",
+    "static/js/main.51870aa5.chunk.js"
+  ]
+}
